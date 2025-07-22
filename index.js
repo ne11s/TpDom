@@ -1,9 +1,7 @@
 let slogan = document.getElementById("slogan");
 let btnNext = document.getElementById("next");
-
-
 const avatarChoise = document.getElementById("avatarChoise");
-
+const username =document.getElementById("userName");
 const sloganArray = ["Un Mars et ça repart ","Parce que nous le valons bien","C’est beau la vie, pour les grands et les petits "]
 
 document.getElementById('randomDescription').addEventListener("click",(e)=>{
@@ -17,8 +15,6 @@ document.getElementById('randomDescription').addEventListener("click",(e)=>{
     }
 })
 
-
-const username =document.getElementById("userName");
 
 username.addEventListener("keyup",()=>{
     let errUserName = document.getElementById('regexUserName')
@@ -54,13 +50,10 @@ btnNext.addEventListener("click", (e) => {
 
     document.getElementById("form").classList.add("hidden")
     document.getElementById("card").classList.remove("hidden")
-    console.log(document.getElementsByClassName("selected").img.src);
     
-    let img = document.getElementById("profilImg").src = document.getElementsByClassName("selected").img.src
-    let desc = document.getElementById("profilDesc").innerText = slogan.textContent
-    let userName = document.getElementById("profilUserName").innerText = document.getElementById('userName').value
-
-    
+    document.getElementById("profilImg").src = document.getElementsByClassName("selected").img.src
+    document.getElementById("profilDesc").innerText = slogan.textContent
+    document.getElementById("profilUserName").innerText = document.getElementById('userName').value
 })
 
 document.getElementById("darkMode").addEventListener("click",(e)=>{
@@ -73,5 +66,4 @@ document.getElementById("darkMode").addEventListener("click",(e)=>{
         darkmod.backgroundColor = "black" 
         darkmod.color = "white"
     }
-    
 })

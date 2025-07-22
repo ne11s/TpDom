@@ -6,7 +6,7 @@
 }
 
 .selected {
-    box-shadow: inset 10px 10px 100px black;
+    box-shadow: inset 10px 10px 100px rgb(165, 165, 165);
     /* box-shadow: 10px 10px 10px black; */
     border-radius: 100px;
     box-sizing: 10px 10px;
