@@ -1,4 +1,5 @@
 let slogan = document.getElementById("slogan");
+let btnNext = document.getElementById("next");
 
 
 const avatarChoise = document.getElementById("avatarChoise");
@@ -23,14 +24,13 @@ username.addEventListener("keypress",(e)=>{
     let errUserName = document.getElementById('regexUserName')
     let newUserName = document.getElementById('userName')
     newUserName = newUserName.value + e.key
-        const regex = /^[a-zA-Z]+$/;
-        console.log();
-        
-        if (!regex.test(newUserName)) {
-            errUserName.classList.remove("hidden")
-        } else if (regex.test(newUserName)) {
-            errUserName.classList.add("hidden")
-        }
+    const regex = /^[a-zA-Z]+$/;
+    if (!regex.test(newUserName)) {
+        errUserName.classList.remove("hidden")
+    } else if (regex.test(newUserName)) {
+        errUserName.classList.add("hidden")
+    }
+    allEntriValidate()
 })
 
 avatarChoise.addEventListener("click",(e)=>{
@@ -39,3 +39,12 @@ avatarChoise.addEventListener("click",(e)=>{
     e.srcElement.classList.add("selected")
 })
 
+function allEntriValidate() {
+    let newUserName = document.getElementById('userName').value
+    const regex = /^[a-zA-Z]+$/;
+    if (regex.test(newUserName)) {
+        btnNext.classList.remove("unValidate")
+    } else if (!regex.test(newUserName)) {
+        btnNext.classList.add("unValidate")
+    }
+}
