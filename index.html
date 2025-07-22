@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>mon app</h1>
-    <form action="none">
+    <form action="none" id="form">
 
         <div id="divUserName" >
             <label for="userName">pseudo:</label>
@@ -28,7 +28,15 @@
         
         <input id="next" type="button" value="Suivant" class="unValidate">
     </form>
-    <input type="button" value="light">
+    <div id="card" class="hidden">
+        <h2>Mon profil</h2>
+        <img id="profilImg" src="./images/img1.png" alt="ma photo de profil">
+        <h4>pseudo :</h4>
+        <p id="profilUserName">nel</p>
+        <h4>Description :</h4>
+        <p id="profilDesc">Un Mars et ça repart</p>
+    </div>
+    <input type="button" value="Light" id="darkMode">
     <script src="index.js"></script>
     <script>
         

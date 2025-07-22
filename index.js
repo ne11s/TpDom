@@ -20,10 +20,10 @@ document.getElementById('randomDescription').addEventListener("click",(e)=>{
 
 const username =document.getElementById("userName");
 
-username.addEventListener("keypress",(e)=>{
+username.addEventListener("keyup",()=>{
     let errUserName = document.getElementById('regexUserName')
     let newUserName = document.getElementById('userName')
-    newUserName = newUserName.value + e.key
+    newUserName = newUserName.value
     const regex = /^[a-zA-Z]+$/;
     if (!regex.test(newUserName)) {
         errUserName.classList.remove("hidden")
@@ -48,3 +48,30 @@ function allEntriValidate() {
         btnNext.classList.add("unValidate")
     }
 }
+
+btnNext.addEventListener("click", (e) => {
+    if (btnNext.classList.contains("unValidate")) return
+
+    document.getElementById("form").classList.add("hidden")
+    document.getElementById("card").classList.remove("hidden")
+    console.log(document.getElementsByClassName("selected").img.src);
+    
+    let img = document.getElementById("profilImg").src = document.getElementsByClassName("selected").img.src
+    let desc = document.getElementById("profilDesc").innerText = slogan.textContent
+    let userName = document.getElementById("profilUserName").innerText = document.getElementById('userName').value
+
+    
+})
+
+document.getElementById("darkMode").addEventListener("click",(e)=>{
+    let darkmod = document.body.style
+    e.target.value = e.target.value === "Light" ? "Dark" : "Light"
+    if (e.target.value === "Light") {
+        darkmod.backgroundColor = "white"
+        darkmod.color ="black" 
+    } else {
+        darkmod.backgroundColor = "black" 
+        darkmod.color = "white"
+    }
+    
+})
