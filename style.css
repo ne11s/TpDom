@@ -12,5 +12,45 @@
     box-sizing: 10px 10px;
 }
 .unValidate{
-    background-color: rgb(191, 197, 204);
+    background-color: rgb(156, 162, 170);
+}
+.unValidate:hover {
+
+}
+
+#card {
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+h3 {
+    height: 5px;
+}
+
+#divUserName {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input {
+    border-radius: 7.5px;
+    height: auto;
+    border-style: groove;
+    border-width: 5px;
+    background-color: antiquewhite;
+}
+
+input:active {
+    border-color: white ;
+}
+
+.unValidate:active{
+    border-color: tomato;
 }
