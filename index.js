@@ -15,6 +15,21 @@ document.getElementById('randomDescription').addEventListener("click",(e)=>{
     }
 })
 
+if (localStorage.getItem("user") !== null) {
+    changePage("form")
+    const existinguser =  JSON.parse(localStorage.getItem("user"))
+    
+    document.getElementById("profilImg").src = existinguser.imgSrc
+    document.getElementById("profilDesc").innerText = existinguser.description
+    document.getElementById("profilUserName").innerText = existinguser.username
+}
+
+
+function changePage(page){
+    const pages = page == "form" ? "card" : "form";
+    document.getElementById(page).classList.add("hidden")
+    document.getElementById(pages).classList.remove("hidden")
+}
 
 username.addEventListener("keyup",()=>{
     let errUserName = document.getElementById('regexUserName')
@@ -48,12 +63,19 @@ function allEntriValidate() {
 btnNext.addEventListener("click", (e) => {
     if (btnNext.classList.contains("unValidate")) return
 
-    document.getElementById("form").classList.add("hidden")
-    document.getElementById("card").classList.remove("hidden")
+    changePage("form")
+    const user = {
+        username :document.getElementById('userName').value,
+        description : slogan.textContent,
+        imgSrc: document.getElementsByClassName("selected").img.src
+    }
+    localStorage.setItem("user", JSON.stringify(user))
+    const existinguser =  JSON.parse(localStorage.getItem("user"))
     
-    document.getElementById("profilImg").src = document.getElementsByClassName("selected").img.src
-    document.getElementById("profilDesc").innerText = slogan.textContent
-    document.getElementById("profilUserName").innerText = document.getElementById('userName').value
+    document.getElementById("profilImg").src = existinguser.imgSrc
+    document.getElementById("profilDesc").innerText = existinguser.description
+    document.getElementById("profilUserName").innerText = existinguser.username
+    
 })
 
 document.getElementById("darkMode").addEventListener("click",(e)=>{
@@ -67,3 +89,8 @@ document.getElementById("darkMode").addEventListener("click",(e)=>{
         darkmod.color = "white"
     }
 })
+
+document.getElementById('modifie').addEventListener('click',(e)=>{
+    changePage("card")
+});
+
