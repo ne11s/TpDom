@@ -2,9 +2,17 @@ let slogan = document.getElementById("slogan");
 let btnNext = document.getElementById("next");
 const avatarChoise = document.getElementById("avatarChoise");
 const username =document.getElementById("userName");
+
+const imgCard = document.getElementById("profilImg");
+const descCard = document.getElementById("profilDesc");
+const userNameCard= document.getElementById("profilUserName");
+
+
 const sloganArray = ["Un Mars et ça repart ","Parce que nous le valons bien","C’est beau la vie, pour les grands et les petits "]
 
-document.getElementById('randomDescription').addEventListener("click",(e)=>{
+
+//gestion des slogan
+document.getElementById('randomDescription').addEventListener("click",()=>{
     const random=  Math.round(Math.random(1)*2)
     if (sloganArray[random]!== slogan.textContent) {
         slogan.textContent = sloganArray[random]
@@ -15,22 +23,24 @@ document.getElementById('randomDescription').addEventListener("click",(e)=>{
     }
 })
 
+// si ya un user ça met directement la card
 if (localStorage.getItem("user") !== null) {
     changePage("form")
     const existinguser =  JSON.parse(localStorage.getItem("user"))
     
-    document.getElementById("profilImg").src = existinguser.imgSrc
-    document.getElementById("profilDesc").innerText = existinguser.description
-    document.getElementById("profilUserName").innerText = existinguser.username
+    imgCard.src = existinguser.imgSrc
+    descCard.innerText = existinguser.description
+    userNameCard.innerText = existinguser.username
 }
 
-
+//simulation de changement de page
 function changePage(page){
     const pages = page == "form" ? "card" : "form";
     document.getElementById(page).classList.add("hidden")
     document.getElementById(pages).classList.remove("hidden")
 }
 
+//verification regex pour le pseudo
 username.addEventListener("keyup",()=>{
     let errUserName = document.getElementById('regexUserName')
     let newUserName = document.getElementById('userName')
@@ -44,12 +54,14 @@ username.addEventListener("keyup",()=>{
     allEntriValidate()
 })
 
+//selection d'image
 avatarChoise.addEventListener("click",(e)=>{
     if (e.srcElement.id !== "img") return
     document.querySelector(".selected").classList.remove("selected");
     e.srcElement.classList.add("selected")
 })
 
+//verification si les entrez son valide meme si c'est que le pseudo 
 function allEntriValidate() {
     let newUserName = document.getElementById('userName').value
     const regex = /^[a-zA-Z]+$/;
@@ -60,24 +72,27 @@ function allEntriValidate() {
     }
 }
 
+//evenement au clique sur le btn suivant
 btnNext.addEventListener("click", (e) => {
     if (btnNext.classList.contains("unValidate")) return
 
     changePage("form")
     const user = {
-        username :document.getElementById('userName').value,
+        username :username.value,
         description : slogan.textContent,
         imgSrc: document.getElementsByClassName("selected").img.src
     }
     localStorage.setItem("user", JSON.stringify(user))
-    const existinguser =  JSON.parse(localStorage.getItem("user"))
     
-    document.getElementById("profilImg").src = existinguser.imgSrc
-    document.getElementById("profilDesc").innerText = existinguser.description
-    document.getElementById("profilUserName").innerText = existinguser.username
+    
+    imgCard.src = user.imgSrc
+    descCard.innerText = user.description
+    userNameCard.innerText = user.username
     
 })
 
+
+//gestion du mode sombre
 document.getElementById("darkMode").addEventListener("click",(e)=>{
     let darkmod = document.body.style
     e.target.value = e.target.value === "Light" ? "Dark" : "Light"
@@ -90,6 +105,7 @@ document.getElementById("darkMode").addEventListener("click",(e)=>{
     }
 })
 
+//au clique sur modifier
 document.getElementById('modifie').addEventListener('click',(e)=>{
     changePage("card")
 });
